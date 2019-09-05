@@ -1,0 +1,44 @@
+{% extends 'music/base_visitor.html' %}
+{% block title %}Log In{% endblock %}
+{% block login_active %}active{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="card card-container">
+                    <h1 class="page-title">Login</h1>
+                    <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                    <p id="profile-name" class="profile-name-card"></p>
+                    <form class="form-signin" role="form" action="{% url 'music:login_user'%}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input class="form-control" id="id_username" maxlength="30" name="username" type="text" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input class="form-control" id="id_password" maxlength="30" name="password" type="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="panel-signup">
+                      Don't have an account? <a class="forgot-password" href="{% url 'music:register' %}">Click here</a> to register.
+                    </div>
+                    {% if error_message %}
+                        <p class="error_message"><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
